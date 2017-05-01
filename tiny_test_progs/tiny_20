@@ -1,0 +1,21 @@
+
+{ This program tests simple function calls for two arguments. }
+program pr5c23:
+var a: integer;
+    b: boolean;
+
+function y (b:integer; a:boolean):integer;
+begin
+	if a then
+		output(1)
+	else
+		output(b)
+end y;
+
+begin
+	a := 13;
+	b := false;
+	output(0);
+	d:=y(a, b);
+	output(0)
+end pr5c23.

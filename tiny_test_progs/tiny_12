@@ -1,0 +1,149 @@
+program MergeSortTest:
+
+type
+	Array = ( a, temp );
+
+var
+	a1, a2, a3, a4, a5, a6, a7, a8, a9, a10 : integer;
+	t1, t2, t3, t4, t5, t6, t7, t8, t9, t10 : integer;
+	i, n, x : integer;
+
+function StoreA ( index, value : integer ):integer;
+begin
+	case index of
+	1: a1 := value;
+	2: a2 := value;
+	3: a3 := value;
+	4: a4 := value;
+	5: a5 := value;
+	6: a6 := value;
+	7: a7 := value;
+	8: a8 := value;
+	9: a9 := value;
+	10: a10 := value;
+	end;
+end StoreA;
+
+function StoreT ( index, value : integer ):integer;
+begin
+	case index of
+	1: t1 := value;
+	2: t2 := value;
+	3: t3 := value;
+	4: t4 := value;
+	5: t5 := value;
+	6: t6 := value;
+	7: t7 := value;
+	8: t8 := value;
+	9: t9 := value;
+	10: t10 := value;
+	end;
+end StoreT;
+
+
+function Store ( A : Array; index, value : integer ):integer;
+begin
+	if A = a then d:=StoreA ( index, value )
+		 else d:=StoreT ( index, value );
+end Store;
+
+
+function ElementA ( index : integer ) : integer;
+begin
+	case index of
+	1: return ( a1 );
+	2: return ( a2 );
+	3: return ( a3 );
+	4: return ( a4 );
+	5: return ( a5 );
+	6: return ( a6 );
+	7: return ( a7 );
+	8: return ( a8 );
+	9: return ( a9 );
+	10: return ( a10 );
+	end;
+end ElementA;
+
+function ElementT ( index : integer ) : integer;
+begin
+	case index of
+	1: return ( t1 );
+	2: return ( t2 );
+	3: return ( t3 );
+	4: return ( t4 );
+	5: return ( t5 );
+	6: return ( t6 );
+	7: return ( t7 );
+	8: return ( t8 );
+	9: return ( t9 );
+	10: return ( t10 );
+	end;
+end ElementT;
+
+
+function Element ( A : Array; index : integer ) : integer;
+begin
+
+	if A = a then return ( ElementA(index) )
+		 else return ( ElementT(index) );
+end Element;
+
+
+function Merge ( low, middle, high : integer ):integer;
+var
+	i, last, nextlow, nexthigh : integer;
+begin
+	i := 1;
+	last := (high - low) + 1;
+	nextlow := low;
+	nexthigh := middle+1;
+	for (i := 1; i<=last; i:=i+1)
+	begin
+		if nextlow > middle then begin
+			d:=Store(temp,i,Element(a,nexthigh));
+			nexthigh := succ(nexthigh)
+		end
+		else if nexthigh > high then begin
+			d:=Store(temp,i,Element(a,nextlow));
+			nextlow := succ(nextlow)
+		end
+		else if Element(a,nextlow) > Element(a, nexthigh) then begin
+			d:=Store(temp,i,Element(a,nexthigh));
+			nexthigh := succ(nexthigh)
+		end
+		else begin
+			d:=Store(temp,i,Element(a,nextlow));
+			nextlow := succ(nextlow)
+		end
+	end;
+
+	for (i:=1; i<=last;i:=i+1) d:=Store ( a, low+i-1, Element(temp,i));
+
+end Merge;
+
+
+function MergeSort ( start, stop : integer ):integer;
+var
+	middle : integer;
+begin
+	if start < stop then
+	begin
+		middle := (start + stop) / 2;
+		d:=MergeSort ( start, middle );
+		d:=MergeSort ( middle+1, stop );
+		d:=Merge ( start, middle, stop );
+	end
+
+end MergeSort;
+
+begin
+
+	for (i:=1; i<=6; i:=i+1)
+	begin
+		read(x);
+		d:=Store ( a, i, x );
+	end;
+	d:=MergeSort ( 1, 6 );
+	for (i:=1; i<=6; i:=i+1) output ( Element ( a, i ) );
+
+end MergeSortTest.

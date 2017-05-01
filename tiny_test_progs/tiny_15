@@ -1,0 +1,67 @@
+program cow:
+
+# A Simple Calculator Program 
+
+var i : integer;
+    c : char;
+    flag : boolean;
+
+function GetNext(d:integer):integer;
+begin
+    if (flag = true) then
+        read(i)
+    else
+	read(c);
+    flag := not(flag);
+end GetNext;
+
+function P(d:integer) : integer;
+var v: integer;
+begin
+    v := i;
+    d:=GetNext(3);
+    return (v);
+end P;
+
+function T(d:integer) : integer;
+var v: integer;
+begin
+   v := P(3);
+   while ((c = '*') or (c = '/')) do begin
+        if (c = '*') then begin
+            d:=GetNext(3);
+	    v := v * P(3);
+        end
+        else begin { c = '/' }
+            d:=GetNext(3);
+            v := v / P(3)
+	end;
+   end;
+   return (v);
+end T;
+
+function E(d:integer) : integer;
+var v: integer;
+begin
+   v := T(3);
+   while ((c = '+') or (c = '-')) do begin
+        if (c = '+') then begin
+            d:=GetNext(3);
+	    v := v + T(3);
+        end
+        else begin { c = '-' }
+            d:=GetNext(3);
+            v := v - T(3)
+	end;
+   end;
+   return (v);
+
+end E;
+
+
+begin
+    flag := true;
+    d:=GetNext(3);
+    output(E(3));
+end cow.
+

@@ -1,0 +1,42 @@
+{
+	This is a program to test a series of numbers entered to see if
+	they are prime.  It ouputs 1 for primes and 0 for composites.
+	It tests:
+		functions
+		while loop
+		case statement
+		repeat loop
+		if statement
+		arithmetic
+}
+program TestPrimes:
+
+var n:integer;
+
+function IsPrime ( n : integer ) : boolean;
+var
+    i : integer;
+    Prime : boolean;
+begin
+
+    Prime := (n=2) or (n mod 2 = 1);  # either 2 or an odd number
+
+    i := 3;
+    while Prime and (i*i <= n) do
+	if n mod i = 0 then Prime := false
+		       else i := i + 2;
+    return (Prime)
+
+end IsPrime;
+
+begin
+
+    repeat
+	read(n);
+	case IsPrime ( n ) of
+	    true:  output(1);
+	    false: output(0);
+	end
+    until eof
+
+end TestPrimes.

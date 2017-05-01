@@ -1,0 +1,102 @@
+{
+	This is a program to test a series of numbers entered to see if
+	they are prime.  It ouputs 1 for primes and 0 for composites.
+	It outputs 2 for numbers which are too big for it to handle.
+	It tests:
+		enumerated types
+		functions & functions as arguments
+		while loop
+		nested case statements
+		repeat loop
+		if statement
+		arithmetic
+}
+program TestPrimes:
+
+type
+
+    Result = ( Composite, Prime, TooBig );
+
+var n: integer;
+
+function Ord ( R : Result ) : integer;
+begin
+   case R of
+      Composite: return (0);
+      Prime:	 return (1);
+      TooBig:    return (2);
+   end
+end Ord;
+
+
+function IsPrime ( n : integer ) : Result;
+type
+    Range = ( LessThan100, Below500, Above500 );
+var
+    i : integer;
+    Size : Range;
+    MightBePrime : boolean;
+begin
+
+    if n < 500 then Size := Below500
+    else Size := Above500;
+
+    case Size of
+    Below500: 
+	begin
+	   if n < 100 then Size := LessThan100;
+	   case Size of
+	   LessThan100:
+		  begin
+		  case n of
+		  2: return (Prime);
+		  3: return (Prime);
+		  5: return (Prime);
+		  7: return (Prime);
+		  11: return (Prime);
+		  13: return (Prime);
+		  17: return (Prime);
+		  19: return (Prime);
+		  23: return (Prime);
+		  29: return (Prime);
+		  31: return (Prime);
+		  37: return (Prime);
+		  41: return (Prime);
+		  43: return (Prime);
+		  47: return (Prime);
+		  53: return (Prime);
+		  59: return (Prime);
+		  61: return (Prime);
+		  67: return (Prime);
+		  71: return (Prime);
+		  73: return (Prime);
+		  79: return (Prime);
+		  83: return (Prime);
+		  89: return (Prime);
+		  97: return (Prime);
+		  end;
+		  return (Composite)
+		  end;
+	      end;
+    	      MightBePrime := (n=2) or (n mod 2 = 1);  
+    			              
+    	      i := 3;
+              while MightBePrime and (i*i <= n) do
+	         if n mod i = 0 then MightBePrime := false
+		       		     else i := i + 2;
+              if MightBePrime then return (Prime)
+				  else return (Composite);
+	  end;
+    end;
+    return (TooBig)
+
+end IsPrime;
+
+begin
+
+    repeat
+	read(n);
+        output ( Ord ( IsPrime(n) ) )
+    until eof
+
+end TestPrimes.

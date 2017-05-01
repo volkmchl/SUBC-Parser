@@ -1,0 +1,147 @@
+{
+	This is a program to test a series of numbers entered to see if
+	they are prime.  It ouputs 1 for primes and 0 for composites.
+	It outputs 2 for numbers which are too big for it to handle.
+	It tests:
+		enumerated types
+		functions & functions as arguments
+		while loop
+		nested case statements
+		repeat loop
+		if statement
+		arithmetic
+}
+program TestPrimes:
+
+type
+
+    Result = ( Composite, Prime, TooBig );
+    color  = ( red, white, blue, green, purple, cyan, magenta, orange, black );
+
+var n: integer;
+
+function ColorValue ( c : color ) : integer;
+begin
+    case c of
+    red:	return (0);
+    white:	return (1);
+    blue:	return (2);
+    green:	return (3);
+    purple:	return (4);
+    cyan:	return (5);
+    magenta:	return (6);
+    orange:	return (7);
+    black:	return (8);
+    end
+end ColorValue;
+
+function Color ( n : integer ): color;
+begin
+    case n of
+    0..8: case n of
+	  0: return (red);
+	  1: return (white);
+	  2: return (blue);
+	  3: return (green);
+	  4: return (purple);
+	  5: return (cyan);
+	  6: return (magenta);
+	  7: return (orange);
+	  8: return (black);
+	  end;
+    otherwise return (Color ( n mod 9 ))
+    end
+end Color;
+
+
+function print ( i : integer ):integer;
+type 
+    Result = ( red, white, blue );
+var
+    color : Result;
+begin
+    case i of
+    0: color := red;
+    1: color := white;
+    2: color := blue;
+    otherwise color := red
+    end;
+    if color = red then output ( 0 )
+    else if color = white then output ( 1 )
+    else output ( 2 );
+end print;
+
+function Ord ( R : Result ) : integer;
+begin
+   case R of
+      Composite: return (0);
+      Prime:	 return (1);
+      TooBig:    return (2);
+   end
+end Ord;
+
+
+function IsPrime ( n : integer ) : Result;
+var
+    i : integer;
+    MightBePrime : boolean;
+begin
+
+    case n of
+    1..500: 
+	   case n of
+	   1..100:
+		  case n of
+		   2: return (Prime);
+		   3: return (Prime);
+		   5: return (Prime);
+		   7: return (Prime);
+		  11: return (Prime);
+		  13: return (Prime);
+		  17: return (Prime);
+		  19: return (Prime);
+		  23: return (Prime);
+		  29: return (Prime);
+		  31: return (Prime);
+		  37: return (Prime);
+		  41: return (Prime);
+		  43: return (Prime);
+		  47: return (Prime);
+		  53: return (Prime);
+		  59: return (Prime);
+		  61: return (Prime);
+		  67: return (Prime);
+		  71: return (Prime);
+		  73: return (Prime);
+		  79: return (Prime);
+		  83: return (Prime);
+		  89: return (Prime);
+		  97: return (Prime);
+		  otherwise return (Composite)
+		  end;
+	  otherwise begin
+
+    	          MightBePrime := (n=2) or (n mod 2 = 1);  
+    			              
+    		  i := 3;
+    		  while MightBePrime and (i*i <= n) do
+		      if n mod i = 0 then MightBePrime := false
+		       		     else i := i + 2;
+		  if MightBePrime then return (Prime)
+				  else return (Composite);
+		end
+	  end;
+    otherwise
+	return (TooBig)
+    end
+
+end IsPrime;
+
+begin
+
+    repeat
+	read(n);
+        output ( Ord ( IsPrime( ColorValue ( Color ( n)))))
+    until eof
+
+end TestPrimes.

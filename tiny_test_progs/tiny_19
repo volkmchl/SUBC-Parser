@@ -1,0 +1,15 @@
+
+{ This program tests simple function calls for zero arguments. }
+program pr5c22:
+var a: integer;
+
+function y(d:integer):integer;
+begin
+	output(1)
+end y;
+
+begin
+	output(0);
+	d:=y(3);
+	output(0)
+end pr5c22.

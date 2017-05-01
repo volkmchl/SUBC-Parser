@@ -1,0 +1,28 @@
+{ This program tests simple function calls for two arguments. }
+program pr5c26:
+var a, b, c, d: integer;
+
+function pos (a, b:integer) : boolean;
+var c: integer;
+begin
+	c := a;
+	output(a, b, c, d);
+	d := b + 1;
+	if (a + b) > 0 then
+		return(true)
+	else
+		return(false)
+end pos;
+
+begin
+	a := 13;
+	b := -2;
+	c := 10;
+	d := 43;
+	output(a, b, c, d);
+	if pos(b,c) then
+		output(1)
+	else
+		output(0);
+	output(a, b, c, d);
+end pr5c26.

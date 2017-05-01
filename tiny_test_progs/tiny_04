@@ -1,0 +1,31 @@
+{
+	This is a program to test enumerated types and recursive function calls.
+	It serves no useful purpose.
+	It tests
+		enumerated types
+		functions
+}
+program Enumerate:
+
+type
+
+    Number = ( zero, one, two, three, four, five, six, seven, eight, nine );
+
+var
+
+    n : Number;
+
+function Ord ( n : Number; value : integer ) : integer;
+
+begin
+
+    if n = zero then return (value)
+	        else return (Ord ( pred(n), succ(value) ));
+
+end Ord;
+
+begin
+
+    for (n := zero; n <= nine; n:=n+1) output ( Ord(n,0) );
+
+end Enumerate.

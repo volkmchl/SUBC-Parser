@@ -1,0 +1,23 @@
+program factorial:
+var n,N,m:integer;
+
+function fact (n:integer):integer;
+begin
+   if n>0 then
+        return (n * fact (n-1))
+   else return (1)
+end fact;
+
+function sum(n:integer):integer;
+var i,N:integer;
+begin
+   if n > 0 then
+      return (n + fact(sum(n-1)))
+   else return (0)
+end sum; 
+
+begin
+   n :=1;
+   read(m);
+   output (  sum(m) ,n )
+end factorial.

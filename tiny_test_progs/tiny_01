@@ -1,0 +1,30 @@
+{
+	This is a program to compute the factors of entered numbers.
+	It tests:
+		procedures
+		repeat loop
+		if statement
+		arithmetic
+}
+program factors:
+
+var
+    i : integer; 
+
+function Factor ( i : integer ):integer;
+var
+    j : integer;
+begin
+    if i > 0 then
+	for (j := 1; j <= i; j:=j+1) 
+	    if i mod j = 0 then output ( j )
+end Factor;
+
+begin
+
+    repeat
+	read(i);
+	d:=Factor ( i )
+    until i <= 0
+
+end factors.

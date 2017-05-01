@@ -1,0 +1,16 @@
+program Fibonacci:
+var i:integer;
+
+function fibonacci(n:integer):integer;
+begin
+   if n=0 then return (0)
+   else if n = 1 then return (1)
+   else return (fibonacci ( n-1 ) + fibonacci ( n-2 ))
+end fibonacci;
+
+begin
+for (i:=1; i<=7; i:=i+1)
+begin
+  output (fibonacci ( i ))
+  end
+end Fibonacci.

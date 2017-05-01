@@ -1,0 +1,14 @@
+program hanoi:
+var Disks:integer;
+
+function Hanoi(a,b,c,n:integer):integer;
+begin
+   if n>1 then d:=Hanoi(a,c,b,n-1);
+   output(a,b);
+   if n>1 then d:=Hanoi(c,b,a,n-1)
+end Hanoi;
+
+begin
+     read(Disks);
+     d:=Hanoi(1,3,2,Disks)
+end hanoi.

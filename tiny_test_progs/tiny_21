@@ -1,0 +1,19 @@
+
+{ This program tests simple function calls for zero arguments. }
+program pr5c24:
+var a: integer;
+
+function y(d:integer) : boolean;
+begin
+	output(a);
+	return(false)
+end y;
+
+begin
+	a := 13;
+	output(0);
+	if y(3) then
+		output(1)
+	else
+		output(0)
+end pr5c24.

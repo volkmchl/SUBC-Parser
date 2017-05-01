@@ -1,0 +1,24 @@
+{ This program tests simple function calls for one argument. }
+program pr5e17:
+var a, b: integer;
+
+function pos (a:integer) : boolean;
+begin
+	output(a, b);
+	b := b + 1;
+	if a > 0 then
+		pos := true
+	else
+		pos := false
+end pos;
+
+begin
+	a := 13;
+	b := -2;
+	output(a, b);
+	if pos(b) then
+		output(1)
+	else
+		output(0);
+	output(a, b)
+end pr5e17.

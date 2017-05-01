@@ -1,0 +1,17 @@
+program factorial:
+var m,n:integer;
+
+function fact (n:integer):integer;
+begin
+   m := m + 1;
+   if n>0 then
+        return (n * fact (n-1))
+   else return (1)
+end fact;
+
+begin
+     m := 0;
+     read(n);
+     output (  fact(n) , m)
+
+end factorial.

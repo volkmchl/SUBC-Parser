@@ -1,0 +1,15 @@
+program test:
+type color=(red,white,blue);
+var C:color;
+
+function print(X:color):color;
+begin
+   if X=red then output(1) else output(0);
+   return (X);
+end print;
+
+begin
+  C := print(red);
+  C := print(blue);
+end test.
+
