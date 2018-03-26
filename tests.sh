@@ -1,21 +1,20 @@
-#!/bin/sh
-for ((i=1; i<10; i++))
+for ((i=1; i<26; i++))
 do
-    echo "Test 0$i"
-   ./p1 -ast tiny_test_progs/tiny_0${i} > userTree0${i}.txt
-   diff userTree0${i}.txt tiny_test_progs/tiny_0${i}.tree;
-done
+    if [ $i -lt 10 ]
+    then
+        printf "Test 0%d: " $i
+        ./p1 -ast tiny_test_progs/tiny_0${i} > resultTree0${i}.txt
+        DIFF=$(diff resultTree0${i}.txt tiny_test_progs/tiny_0${i}.tree)
+    else
+        printf "Test %d: " $i
+        ./p1 -ast tiny_test_progs/tiny_${i} > resultTree${i}.txt
+        DIFF=$(diff resultTree${i}.txt tiny_test_progs/tiny_${i}.tree)
+    fi
 
-for ((i=0; i<10; i++))
-do
-    echo "Test 1$i"
-    ./p1 -ast tiny_test_progs/tiny_1$i > userTree1${i}.txt
-    diff userTree1${i}.txt tiny_test_progs/tiny_1${i}.tree;
-done
-
-for ((i=1; i<6; i++))
-do
-    echo "Test 2$i"
-    ./p1 -ast tiny_test_progs/tiny_2$i > userTree2${i}.txt
-    diff userTree2${i}.txt tiny_test_progs/tiny_2${i}.tree;
+    if [ "$DIFF" != "" ]
+    then
+        echo "Failed"
+    else
+        echo "Success"
+    fi
 done
