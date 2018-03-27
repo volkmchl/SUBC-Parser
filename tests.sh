@@ -1,4 +1,3 @@
-PASSED=0
 for i in $(seq -f "%02g" 1 25)
 do
     printf "Test %s: " $i
@@ -10,8 +9,5 @@ do
         echo "Failed"
     else
         echo "Success"
-        ((++PASSED))
     fi
 done
-echo "Passed: $PASSED / 25"
-echo "Failed: $((25-PASSED)) / 25"
